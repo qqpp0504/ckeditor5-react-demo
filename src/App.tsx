@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// This sample assumes that the application is using a CKEditor&nbsp;5 editor built from source.
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component } from "react";
+import { CKEditor, CKEditorContext } from "@ckeditor/ckeditor5-react";
+
+import { ClassicEditor } from "@ckeditor/ckeditor5-editor-classic";
+import { Context } from "@ckeditor/ckeditor5-core";
+import { Bold, Italic } from "@ckeditor/ckeditor5-basic-styles";
+import { Paragraph } from "@ckeditor/ckeditor5-paragraph";
+import { ContextWatchdog } from "@ckeditor/ckeditor5-watchdog";
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <CKEditorContext context={Context} contextWatchdog={ContextWatchdog}>
+          <h2>Using the CKEditor&nbsp;5 context feature in React</h2>
+          <CKEditor
+            editor={ClassicEditor}
+            config={{
+              plugins: [Paragraph, Bold, Italic],
+              toolbar: ["bold", "italic"],
+            }}
+            data="<p>Hello from the first editor working with the context!</p>"
+            onReady={(editor) => {
+              // You can store the "editor" and use when it is needed.
+              console.log("Editor1 is ready to use!", editor);
+            }}
+          />
+
+          <CKEditor
+            editor={ClassicEditor}
+            config={{
+              plugins: [Paragraph, Bold, Italic],
+              toolbar: ["bold", "italic"],
+            }}
+            data="<p>Hello from the second editor working with the context!</p>"
+            onReady={(editor) => {
+              // You can store the "editor" and use when it is needed.
+              console.log("Editor2 is ready to use!", editor);
+            }}
+          />
+        </CKEditorContext>
+      </div>
+    );
+  }
 }
 
 export default App;
