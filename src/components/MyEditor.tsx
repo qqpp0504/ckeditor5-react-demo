@@ -2,7 +2,11 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { ClassicEditor } from "@ckeditor/ckeditor5-editor-classic";
 
 // import { AiAgent } from "@dxpr/ckeditor5-ai-agent";
+import { Paragraph } from "@ckeditor/ckeditor5-paragraph";
+import { Heading } from "@ckeditor/ckeditor5-heading";
 import { Bold, Italic } from "@ckeditor/ckeditor5-basic-styles";
+import { Typing } from "@ckeditor/ckeditor5-typing";
+import { Essentials } from "@ckeditor/ckeditor5-essentials";
 
 import "ckeditor5/ckeditor5.css";
 
@@ -13,9 +17,9 @@ type MyEditorProps = {
 
 const editorConfig = {
   licenseKey: "GPL",
-  plugins: [Bold, Italic],
+  plugins: [Essentials, Typing, Paragraph, Bold, Italic, Heading],
   toolbar: {
-    items: ["bold", "italic"],
+    items: ["heading", "bold", "italic"],
   },
 };
 
@@ -27,7 +31,8 @@ const MyEditor = ({ editorData, setEditorData }: MyEditorProps) => {
         config={editorConfig}
         data={editorData}
         onChange={(event, editor) => {
-          setEditorData(editor.getData());
+          const newData = editor.getData();
+          setEditorData(newData);
         }}
       />
     </div>
