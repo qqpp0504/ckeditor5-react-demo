@@ -1,4 +1,3 @@
-const { styles } = require("@ckeditor/ckeditor5-dev-utils");
 const path = require("path");
 
 module.exports = {
@@ -19,30 +18,30 @@ module.exports = {
         });
       }
       // CKEditor 專用 CSS loader
-      webpackConfig.module.rules.push({
-        test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
-        use: [
-          {
-            loader: "style-loader",
-            options: {
-              injectType: "singletonStyleTag",
-              attributes: { "data-cke": true },
-            },
-          },
-          "css-loader",
-          {
-            loader: "postcss-loader",
-            options: {
-              postcssOptions: styles.getPostCssConfig({
-                themeImporter: {
-                  themePath: require.resolve("@ckeditor/ckeditor5-theme-lark"),
-                },
-                minify: true,
-              }),
-            },
-          },
-        ],
-      });
+      // webpackConfig.module.rules.push({
+      //   test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+      //   use: [
+      //     {
+      //       loader: "style-loader",
+      //       options: {
+      //         injectType: "singletonStyleTag",
+      //         attributes: { "data-cke": true },
+      //       },
+      //     },
+      //     "css-loader",
+      //     {
+      //       loader: "postcss-loader",
+      //       options: {
+      //         postcssOptions: styles.getPostCssConfig({
+      //           themeImporter: {
+      //             themePath: require.resolve("@ckeditor/ckeditor5-theme-lark"),
+      //           },
+      //           minify: true,
+      //         }),
+      //       },
+      //     },
+      //   ],
+      // });
       return webpackConfig;
     },
   },
