@@ -1,12 +1,14 @@
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { ClassicEditor } from "@ckeditor/ckeditor5-editor-classic";
 
-// import { AiAgent } from "@dxpr/ckeditor5-ai-agent";
+import { AiAgent } from "@dxpr/ckeditor5-ai-agent";
 import { Paragraph } from "@ckeditor/ckeditor5-paragraph";
 import { Heading } from "@ckeditor/ckeditor5-heading";
 import { Bold, Italic } from "@ckeditor/ckeditor5-basic-styles";
 import { Typing } from "@ckeditor/ckeditor5-typing";
 import { Essentials } from "@ckeditor/ckeditor5-essentials";
+import { SourceEditing } from "@ckeditor/ckeditor5-source-editing";
+import { Font } from "@ckeditor/ckeditor5-font";
 
 import "ckeditor5/ckeditor5.css";
 
@@ -17,9 +19,31 @@ type MyEditorProps = {
 
 const editorConfig = {
   licenseKey: "GPL",
-  plugins: [Essentials, Typing, Paragraph, Bold, Italic, Heading],
+  plugins: [
+    AiAgent,
+    Essentials,
+    Typing,
+    Paragraph,
+    Bold,
+    Italic,
+    Heading,
+    SourceEditing,
+    Font,
+  ],
   toolbar: {
-    items: ["heading", "bold", "italic"],
+    items: [
+      "aiAgentButton",
+      "aiAgentToneButton",
+      "sourceEditing",
+      "|",
+      "heading",
+      "|",
+      "fontFamily",
+      "fontSize",
+      "|",
+      "bold",
+      "italic",
+    ],
   },
 };
 
