@@ -45,6 +45,23 @@ const editorConfig = {
       "italic",
     ],
   },
+  aiAgent: {
+    apiKey: "YOUR_API_KEY",
+    tonesDropdown: [
+      {
+        label: "Technical",
+        tone: "Use technical language with precise terminology and detailed explanations.",
+      },
+      {
+        label: "Casual",
+        tone: "Write in a relaxed, conversational style using everyday language.",
+      },
+      {
+        label: "Academic",
+        tone: "Use formal academic language with proper citations and structured arguments.",
+      },
+    ],
+  },
 };
 
 const MyEditor = ({ editorData, setEditorData }: MyEditorProps) => {
