@@ -2,6 +2,9 @@ const path = require("path");
 
 module.exports = {
   webpack: {
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
     configure: (webpackConfig) => {
       // Exclude CKEditor SVG from default loader
       const oneOfRule = webpackConfig.module.rules.find((rule) =>
