@@ -1,5 +1,6 @@
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { ClassicEditor } from "@ckeditor/ckeditor5-editor-classic";
+import { EditorConfig } from "@ckeditor/ckeditor5-core";
 
 import { AiAgent } from "@dxpr/ckeditor5-ai-agent";
 import { Paragraph } from "@ckeditor/ckeditor5-paragraph";
@@ -42,33 +43,17 @@ import {
   SpecialCharactersText,
 } from "@ckeditor/ckeditor5-special-characters";
 import { Link } from "@ckeditor/ckeditor5-link";
-import {
-  PictureEditing,
-  AutoImage,
-  ImageBlock,
-  ImageCaption,
-  ImageInline,
-  ImageInsert,
-  ImageInsertViaUrl,
-  ImageResize,
-  ImageStyle,
-  ImageTextAlternative,
-  ImageToolbar,
-  ImageUpload,
-} from "@ckeditor/ckeditor5-image";
 import { Autoformat } from "@ckeditor/ckeditor5-autoformat";
 import { Autosave } from "@ckeditor/ckeditor5-autosave";
 
 import "ckeditor5/ckeditor5.css";
-import { CustomUploadAdapterPlugin } from "../customPlugins/CustomUploadAdapter";
-import UploadFilePlugin from "../customPlugins/UploadFilePlugin";
 
 type MyEditorProps = {
   editorData: string;
   setEditorData: (data: string) => void;
 };
 
-const editorConfig = {
+const editorConfig: EditorConfig = {
   licenseKey: "GPL",
   plugins: [
     AiAgent,
@@ -108,20 +93,6 @@ const editorConfig = {
     SpecialCharactersMathematical,
     SpecialCharactersText,
     Link,
-    PictureEditing,
-    AutoImage,
-    ImageBlock,
-    ImageCaption,
-    ImageInline,
-    ImageInsert,
-    ImageInsertViaUrl,
-    ImageResize,
-    ImageStyle,
-    ImageTextAlternative,
-    ImageToolbar,
-    ImageUpload,
-    CustomUploadAdapterPlugin,
-    UploadFilePlugin,
     Autoformat,
     Autosave,
   ],
@@ -167,8 +138,6 @@ const editorConfig = {
       "specialCharacters",
       "|",
       "link",
-      "insertImage",
-      "insertFile",
       "|",
       "undo",
       "redo",
@@ -176,6 +145,9 @@ const editorConfig = {
     shouldNotGroupWhenFull: false,
   },
   aiAgent: {
+    endpointUrl: "URL",
+    model: "MODEL",
+    engine: "ollama",
     apiKey: "YOUR_API_KEY",
     tonesDropdown: [
       {
